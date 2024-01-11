@@ -1,4 +1,4 @@
-﻿@Model party.Models.Guest;
+﻿@model party.Models.Guest
 
 @using (Html.BeginForm())
 {
@@ -8,5 +8,15 @@
     <p> Sisesta email: @Html.TextBoxFor(x => x.Email)</p>
     <p> Sisesta phone: @Html.TextBoxFor(x => x.Phone)</p>
     <p> Sisesta notes: @Html.TextBoxFor(x => x.Notes)</p>
+    <p>
 
+        Sinu valik:
+        @Html.DropDownListFor(x => x.WillAttend, 
+       new[] 
+        {
+            new SelectListItem() {Text="Tule kindlasti!", Value = bool.TrueString},
+            new SelectListItem()  {Text="Kajuks ei saa tulla!", Value = bool.FalseString},
+        }, "Vali siit")
+    </p>
+    <input type="submit" value="Saada vastus" />
 }
