@@ -4,6 +4,7 @@
 
 <div class="jumbotron">
     <h1>Ürituste korraldamise firma</h1>
+    <h2><p>@ViewBag.Greeting</p></h2>
     <p class="lead">Meie ettevõte pakub varustust, personali puhkuseks, firmaüritusteks</p>
     <p><a href="https://www.tthk.ee/" class="btn btn-primary btn-lg">TTHK &raquo;</a></p>
 </div>
@@ -16,7 +17,12 @@
             <li>Teie ettevõttele kohandatud üritused</li>
             <li>Loovad kontseptsioonid ja võtmed kätte dekoratsioonid</li>
             <li>Kulinaarsed meistriteosed meie partneritelt</li>
-        </ul>     
+        </ul>
     </div>
 
 </div>
+@if (!string.IsNullOrEmpty(ViewBag.HolidayImage))
+{
+    <img src="~/Images/@ViewBag.HolidayImage" alt="Holiday Image" />
+}
+<p>@ViewBag.Message</p>

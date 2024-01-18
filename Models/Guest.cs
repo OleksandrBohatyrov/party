@@ -10,6 +10,7 @@ namespace party.Models
     {
         [Required(ErrorMessage = "Sisesta nimi")]
 
+        public int Id { get; set; }
         public string Name { get; set; }
         [Required(ErrorMessage = "Sisesta posti adress siia")]
         [RegularExpression(@".+\@.+\..+", ErrorMessage ="Vale postkast")]
