@@ -77,7 +77,7 @@ namespace party.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Parooli kinnitamine")]
-        [Compare("Salasõna", ErrorMessage = "Parool ja kinnitusparool ei sobi kokku.")]
+        [Compare("Password", ErrorMessage = "Parool ja kinnitusparool ei sobi kokku.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -96,7 +96,7 @@ namespace party.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Parooli kinnitamine")]
-        [Compare("Salasõna", ErrorMessage = "Parool ja kinnitusparool ei sobi kokku.")]
+        [Compare("Password", ErrorMessage = "Parool ja kinnitusparool ei sobi kokku.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

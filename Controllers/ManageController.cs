@@ -55,12 +55,12 @@ namespace party.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Teie parool on muudetud."
+                : message == ManageMessageId.SetPasswordSuccess ? "Teie parool on määratud."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Teie kahefaktoriline autentimisteenuse pakkuja on seadistatud."
+                : message == ManageMessageId.Error ? "Tekkis viga."
+                : message == ManageMessageId.AddPhoneSuccess ? "Sinu telefoninumber lisati."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Su telefoninumber eemaldati."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -123,7 +123,7 @@ namespace party.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "Your security code is: " + code
+                    Body = "Teie turvakood on: " + code
                 };
                 await UserManager.SmsService.SendAsync(message);
             }
@@ -190,7 +190,7 @@ namespace party.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Failed to verify phone");
+            ModelState.AddModelError("", "Telefoni kontrollimine nurjus");
             return View(model);
         }
 
@@ -281,8 +281,8 @@ namespace party.Controllers
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.RemoveLoginSuccess ? "Väline sisselogimine eemaldati."
+                : message == ManageMessageId.Error ? "Tekkis viga."
                 : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)

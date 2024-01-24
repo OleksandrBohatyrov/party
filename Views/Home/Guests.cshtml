@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<party.Models.Guest>
 
 @{
-    ViewBag.Title = "Guests";
+    ViewBag.Title = "Külalised";
 }
 
-<h2>Guests</h2>
+<h2>Külalised</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Loo uus", "Create")
+    @Html.ActionLink("Tulevad", "Tulevad")
+    @Html.ActionLink("Loobusid", "Loobusid")
 </p>
 <table class="table">
     <tr>
@@ -39,6 +41,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Phone)
+       
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.WillAttend)
