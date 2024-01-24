@@ -1,6 +1,7 @@
 ﻿using party.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -75,6 +76,69 @@ namespace party.Controllers
 
             return View();
         }
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(Guest guest)
+        {   db.Guests.Add(guest);
+            db.SaveChanges();
+
+
+            return RedirectToAction("Guests");
+        }
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            Guest g = db.Guests.Find(id);
+            if (g==null)
+            {
+
+                return HttpNotFound();
+
+            }
+
+
+            return View(g);
+        }
+
+        [HttpPost, ActionName("Delete")]
+
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Guest g = db.Guests.Find(id);
+            if (g==null)
+            {
+                return HttpNotFound();
+            }
+            db.Guests.Remove(g);
+            db.SaveChanges();
+            return RedirectToAction("Guests");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            Guest g = db.Guests.Find(id);
+            if (g==null)
+            {
+                return HttpNotFound();
+            }
+
+
+            return View();
+        }
+        [HttpPost, ActionName("Edit")]
+
+        public ActionResult EditConfirmed(Guest guest)
+        {
+            db.Entry(guest).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Guests");
+        }
+
         public ActionResult Kutse() 
         {
             int hour=DateTime.Now.Hour;
@@ -89,6 +153,7 @@ namespace party.Controllers
         
         }
         GuestContext db = new GuestContext();
+        [Authorize]
         public ActionResult Guests()
         {
             IEnumerable<Guest> guests = db.Guests;
@@ -101,7 +166,9 @@ namespace party.Controllers
             E_mail(guest);
             E_mail2(guest);
             if (ModelState.IsValid) { 
-            
+                db.Guests.Add(guest);
+                db.SaveChanges();
+
                 return View("Thanks", guest);
             }
             else
