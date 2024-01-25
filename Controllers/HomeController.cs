@@ -126,8 +126,6 @@ namespace party.Controllers
             {
                 return HttpNotFound();
             }
-
-
             return View();
         }
         [HttpPost, ActionName("Edit")]
@@ -227,6 +225,18 @@ namespace party.Controllers
             ViewBag.Message = "Teie kontaktleht.";
 
             return View();
+        }
+        [HttpGet] 
+        public ActionResult Tulevad() {
+            IEnumerable<Guest> guests = db.Guests.Where(g => g.WillAttend == true);
+            return View(guests);
+        
+        }
+        public ActionResult Loobusid()
+        {
+            IEnumerable<Guest> guests = db.Guests.Where(g => g.WillAttend == false);
+            return View(guests);
+
         }
     }
 }
