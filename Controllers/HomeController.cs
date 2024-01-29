@@ -238,5 +238,11 @@ namespace party.Controllers
             return View(guests);
 
         }
+        public ActionResult Peod(Guest guests) { 
+
+
+            return View(guests); 
+        
+        }
     }
 }

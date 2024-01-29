@@ -9,5 +9,8 @@ namespace party.Models
     public class GuestContext : DbContext
     {  
         public DbSet<Guest> Guests { get; set; }
+        public int? PeodId { get; set; }
+
+        public virtual Peod Peod { get; set; }
     }
 }
